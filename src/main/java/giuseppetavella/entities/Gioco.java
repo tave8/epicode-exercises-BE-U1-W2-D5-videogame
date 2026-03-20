@@ -1,6 +1,8 @@
 package giuseppetavella.entities;
 
-public abstract class Gioco {
+import giuseppetavella.interfaces.CollectionItem;
+
+public abstract class Gioco implements CollectionItem {
     private final long idGioco;
     private String titolo;
     private final long annoPubblicazione;
@@ -11,6 +13,16 @@ public abstract class Gioco {
         this.setTitolo(titolo);
         this.setPrezzo(prezzo);
         this.annoPubblicazione = annoPubblicazione;
+    }
+
+    /**
+     * Each Gioco instance must implement getId()
+     * because the interface provides it; 
+     * therefore, giocoA.getId() == giocoA.getIdGioco()
+     */
+    @Override
+    public long getId() {
+        return this.getIdGioco();
     }
 
     public long getIdGioco() {
@@ -35,5 +47,15 @@ public abstract class Gioco {
 
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
+    }
+
+    @Override
+    public String toString() {
+        return "Gioco{" +
+                "idGioco=" + idGioco +
+                ", titolo='" + titolo + '\'' +
+                ", annoPubblicazione=" + annoPubblicazione +
+                ", prezzo=" + prezzo +
+                '}';
     }
 }
