@@ -1,12 +1,11 @@
 package giuseppetavella.entities;
 
+import giuseppetavella.enums.CollezioneItemType;
 import giuseppetavella.exceptions.CollezioneItemIdIsNotFoundException;
 import giuseppetavella.exceptions.CollezioneItemIdIsNotUniqueException;
 import giuseppetavella.interfaces.CollezioneItem;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -138,10 +137,58 @@ public class Collezione<T extends CollezioneItem> {
             return giocoDaTavolo.getNumeroGiocatori() == targetNumeroGiocatori;
         });
     }
-    
+
+
+    /**
+     * Print collection items stats.
+     */
     public void printStats() {
+        // **** STAT: numero totale videgiochi & giochi da tavolo
+        // group by collezione item type
+        Map<CollezioneItemType, Long> countByCollezioneItemType = this.getCountByCollezioneItemType();
+        
+        // **** STAT: gioco con il prezzo più alto
+        
+        // **** STAT: media dei prezzi di tutti gli elementi (collection items) 
+        
+        
+        // PRINT     
+        System.out.println();
+        System.out.println("-----");
+        System.out.println("COUNT PER CATEGORIA DI COLLEZIONE ITEM");
+        System.out.println("-----");
+        countByCollezioneItemType.forEach((collezioneItemType, howMany) -> {
+            String msg = collezioneItemType + ": " + howMany;
+            System.out.println(msg);
+        });
         
     }
+
+    /**
+     * STAT 
+     */
+    public Map<CollezioneItemType, Long> getCountByCollezioneItemType() {
+        // STEP 1: calculate stats
+        Map<CollezioneItemType, Long> outputMap = this.getItems().stream()
+                .collect(
+                        Collectors.groupingBy(
+                                CollezioneItem::getCollezioneItemType,
+                                Collectors.counting()
+                        )
+                );
+
+        // STEP 2: fill in missing categories with default value
+        CategoryChecker<CollezioneItemType> categoryChecker = new CategoryChecker<>(CollezioneItemType.class);
+        
+        Set<CollezioneItemType> missingCategories = categoryChecker.getMissingCategoriesFromMap(outputMap);
+
+        for(CollezioneItemType missingCategory : missingCategories) {
+            outputMap.put(missingCategory, 0L);
+        }
+        
+        return outputMap;
+    } 
+            
     
     public boolean existsItemWithId(long targetId) {
         for(T item: this.getItems()) {

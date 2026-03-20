@@ -1,15 +1,19 @@
 package giuseppetavella.entities;
 
+import giuseppetavella.enums.CollezioneItemType;
 import giuseppetavella.interfaces.CollezioneItem;
 
 public abstract class Gioco implements CollezioneItem {
     private final long idGioco;
+    private final CollezioneItemType itemType;
     private String titolo;
     private final long annoPubblicazione;
     private double prezzo;
     
-    public Gioco(long idGioco, String titolo, double prezzo, long annoPubblicazione) {
+    
+    public Gioco(long idGioco, String titolo, CollezioneItemType itemType, double prezzo, long annoPubblicazione) {
         this.idGioco = idGioco;
+        this.itemType = itemType;
         this.setTitolo(titolo);
         this.setPrezzo(prezzo);
         this.annoPubblicazione = annoPubblicazione;
@@ -28,6 +32,11 @@ public abstract class Gioco implements CollezioneItem {
     @Override
     public double getPrice() {
         return this.getPrezzo();
+    }
+    
+    @Override
+    public CollezioneItemType getCollezioneItemType() {
+        return this.itemType;
     }
 
     public long getIdGioco() {

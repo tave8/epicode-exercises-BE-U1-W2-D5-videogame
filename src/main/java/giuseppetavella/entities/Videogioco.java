@@ -1,5 +1,6 @@
 package giuseppetavella.entities;
 
+import giuseppetavella.enums.CollezioneItemType;
 import giuseppetavella.enums.GenereVideogioco;
 import giuseppetavella.enums.PiattaformaVideogioco;
 
@@ -9,7 +10,7 @@ public class Videogioco extends Gioco {
     private GenereVideogioco genere;
     
     public Videogioco(long idGioco, String titolo, double prezzo, long annoPubblicazione, long durataGioco,  PiattaformaVideogioco piattaformaVideogioco, GenereVideogioco genereVideogioco) {
-        super(idGioco, titolo, prezzo, annoPubblicazione);
+        super(idGioco, titolo, CollezioneItemType.VIDEOGIOCO, prezzo, annoPubblicazione);
         this.setGenere(genereVideogioco);
         this.setPiattaforma(piattaformaVideogioco);
         this.setDurataGioco(durataGioco);
