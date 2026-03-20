@@ -43,14 +43,16 @@ public abstract class Gioco implements CollezioneItem {
     public void setTitolo(String newTitolo) {
         this.titolo = newTitolo;
     }
+    
+    @Override
+    public String getTitolo() {
+        return titolo;
+    }
 
     public int getIdGioco() {
         return idGioco;
     }
 
-    public String getTitolo() {
-        return titolo;
-    }
 
     public long getAnnoPubblicazione() {
         return annoPubblicazione;

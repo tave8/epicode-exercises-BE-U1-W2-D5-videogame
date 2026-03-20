@@ -50,14 +50,14 @@ public class Main {
                 giocoDaTavolo1,
                 giocoDaTavolo2
         ));
-
         
+
+        // runTestUpdateById(tutteCollezioni);
+        //
         // runTestFindById(tutteCollezioni);
         //
-        // runTestFindByNumeroGiocatori(tutteCollezioni);
-        
         // runTestFindWithPriceLTE(tutteCollezioni);
-
+        //
         // runTestFindWhereNumeroGiocatoriEQ(tutteCollezioni);
         
         
@@ -67,11 +67,36 @@ public class Main {
         // giochi2.printStats();
 
         // runTestRemoveById(tutteCollezioni);
-        // runTestRemoveById(tutteCollezioni);
         
     }
     
-    // public static void runTestUpdateById
+    public static void runTestUpdateById(List<Collezione<Gioco>> tutteCollezioni) {
+        System.out.println();
+        System.out.println("************ TEST: UPDATE BY ID ***********");
+
+        List<Integer> targetItemIds = new ArrayList<>(List.of(
+                1,2,3,4,5,6,7,8
+        ));
+        // for each collezione
+        for(Collezione<?> currCollezione : tutteCollezioni) {
+            System.out.println("  COLLECTION: " + currCollezione.getName());
+            // for each target item id 
+            for (Integer targetItemId : targetItemIds) {
+                boolean itemFound = false;
+                try {
+                    String newTitolo = "new title: " + targetItemId;
+                    currCollezione.updateById(targetItemId, newTitolo);
+                    itemFound = true;
+                }
+                catch(CollezioneItemIdIsNotFoundException ex) {
+                    itemFound = false;
+                }
+                finally {
+                    System.out.println("    item (ID:"+targetItemId+") - found: " + itemFound);
+                }
+            }
+        }
+    }
     
     public static void runTestRemoveById(List<Collezione<Gioco>> tutteCollezioni) {
         System.out.println();
@@ -147,7 +172,6 @@ public class Main {
     }
     
     public static void runTestFindById(List<Collezione<Gioco>> tutteCollezioni) {
-        // ***** FIND BY ID *****
         System.out.println();
         System.out.println("************ TEST: FIND BY ID ***********");
 
@@ -174,26 +198,4 @@ public class Main {
         }
     }
     
-    public static void runTestFindByNumeroGiocatori(List<Collezione<Gioco>> tutteCollezioni) {
-        System.out.println();
-        System.out.println("************ TEST: FIND BY NUMERO GIOCATORI ***********");
-
-        List<Double> targetPrices = new ArrayList<>(List.of(
-                5.0, 10.0, 20.0, 50.0, 100.0, 200.0
-        ));
-        // for each collezione
-        for(Collezione<?> currCollezione : tutteCollezioni) {
-            System.out.println("  COLLECTION: " + currCollezione.getName());
-            // for each target price
-            for (Double targetPrice : targetPrices) {
-                System.out.println("    TARGET PRICE: " + targetPrice);
-                List<?> outList = currCollezione.findWherePriceLTE(targetPrice);
-                if(outList.isEmpty()) {
-                    System.out.println("      "+"no item found where target price "+targetPrice);
-                } else {
-                    outList.forEach(item -> System.out.println("      "+item) );
-                }
-            }
-        }
-    }
 }
