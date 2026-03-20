@@ -60,11 +60,42 @@ public class Main {
 
         // runTestFindWhereNumeroGiocatoriEQ(tutteCollezioni);
         
+        
         // ***** PRINT STATS ****
         
         // giochi1.printStats();
         // giochi2.printStats();
+
+        // runTestRemoveById(tutteCollezioni);
+        // runTestRemoveById(tutteCollezioni);
         
+    }
+    
+    public static void runTestRemoveById(List<Collezione<Gioco>> tutteCollezioni) {
+        System.out.println();
+        System.out.println("************ TEST: REMOVE BY ID ***********");
+
+        List<Integer> targetItemIds = new ArrayList<>(List.of(
+                1,2,3,4,5,6,7,8
+        ));
+        // for each collezione
+        for(Collezione<?> currCollezione : tutteCollezioni) {
+            System.out.println("  COLLECTION: " + currCollezione.getName());
+            // for each target item id 
+            for (Integer targetItemId : targetItemIds) {
+                boolean itemFound = false;
+                try {
+                    currCollezione.removeById(targetItemId);
+                    itemFound = true;
+                }
+                catch(CollezioneItemIdIsNotFoundException ex) {
+                    itemFound = false;
+                }
+                finally {
+                    System.out.println("    item (ID:"+targetItemId+") - removed: " + itemFound);
+                }
+            }
+        }
     }
     
     public static void runTestFindWhereNumeroGiocatoriEQ(List<Collezione<Gioco>> tutteCollezioni) {
