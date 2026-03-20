@@ -1,6 +1,7 @@
 package giuseppetavella.entities;
 
 import giuseppetavella.enums.CollezioneItemType;
+import giuseppetavella.exceptions.NumeroGiocatoriOutOfRangeException;
 
 public class GiocoDaTavolo extends Gioco {
     private long numeroGiocatori;
@@ -16,7 +17,10 @@ public class GiocoDaTavolo extends Gioco {
         return numeroGiocatori;
     }
 
-    public void setNumeroGiocatori(long numeroGiocatori) {
+    public void setNumeroGiocatori(long numeroGiocatori) throws NumeroGiocatoriOutOfRangeException {
+        if(!(numeroGiocatori >= 2 && numeroGiocatori <= 10)) {
+            throw new NumeroGiocatoriOutOfRangeException("Numero giocatori " + numeroGiocatori + " non è valido.");
+        }
         this.numeroGiocatori = numeroGiocatori;
     }
 
@@ -24,7 +28,10 @@ public class GiocoDaTavolo extends Gioco {
         return durataMediaPartita;
     }
 
-    public void setDurataMediaPartita(long durataMediaPartita) {
+    public void setDurataMediaPartita(long durataMediaPartita) throws IllegalArgumentException {
+        if(durataMediaPartita <= 0) {
+            throw new IllegalArgumentException("Durata media partita deve essere > 0. Fornito: " + durataMediaPartita);
+        }
         this.durataMediaPartita = durataMediaPartita;
     }
 }

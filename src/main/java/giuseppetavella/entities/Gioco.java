@@ -59,7 +59,10 @@ public abstract class Gioco implements CollezioneItem {
         this.titolo = titolo;
     }
 
-    public void setPrezzo(double prezzo) {
+    public void setPrezzo(double prezzo) throws IllegalArgumentException {
+        if(prezzo <= 0) {
+            throw new IllegalArgumentException("Prezzo deve essere > 0. Fornito: " + prezzo);
+        }
         this.prezzo = prezzo;
     }
 

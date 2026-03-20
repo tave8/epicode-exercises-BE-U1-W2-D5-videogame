@@ -32,7 +32,10 @@ public class Videogioco extends Gioco {
         this.piattaforma = piattaforma;
     }
 
-    public void setDurataGioco(long durataGioco) {
+    public void setDurataGioco(long durataGioco) throws IllegalArgumentException {
+        if(durataGioco <= 0) {
+            throw new IllegalArgumentException("Durata gioco deve essere > 0. Fornito: " + durataGioco);
+        }
         this.durataGioco = durataGioco;
     }
 
