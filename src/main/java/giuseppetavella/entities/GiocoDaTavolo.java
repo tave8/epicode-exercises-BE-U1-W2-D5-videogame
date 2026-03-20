@@ -34,4 +34,5 @@ public class GiocoDaTavolo extends Gioco {
         }
         this.durataMediaPartita = durataMediaPartita;
     }
+    
 }

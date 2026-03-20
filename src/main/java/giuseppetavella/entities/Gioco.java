@@ -39,6 +39,11 @@ public abstract class Gioco implements CollezioneItem {
         return this.itemType;
     }
 
+    @Override
+    public void setTitolo(String newTitolo) {
+        this.titolo = newTitolo;
+    }
+
     public int getIdGioco() {
         return idGioco;
     }
@@ -55,9 +60,7 @@ public abstract class Gioco implements CollezioneItem {
         return prezzo;
     }
 
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
-    }
+
 
     public void setPrezzo(double prezzo) throws IllegalArgumentException {
         if(prezzo <= 0) {

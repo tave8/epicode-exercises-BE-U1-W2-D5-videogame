@@ -70,13 +70,13 @@ public class Collezione<T extends CollezioneItem> {
                                                             +"Verify this assumption; this might happen for other reasons as well.");
         }
     }
-    
-    public void updateById(int targetId) throws CollezioneItemIdIsNotFoundException {
-        // check: item with this id does not exist, throw error
-        if(!this.existsItemWithId(targetId)) {
-            throw new CollezioneItemIdIsNotFoundException("The item with id " + targetId + " does not exist.");
-        }
-        // continue here     
+
+    /**
+     * 
+     */
+    public void updateById(int targetId, String newTitolo) throws CollezioneItemIdIsNotFoundException {
+        T currentItem = this.findById(targetId);
+        currentItem.setTitolo(newTitolo);
     }
     
     public double calcAverageItemPrice() {

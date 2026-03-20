@@ -71,6 +71,8 @@ public class Main {
         
     }
     
+    // public static void runTestUpdateById
+    
     public static void runTestRemoveById(List<Collezione<Gioco>> tutteCollezioni) {
         System.out.println();
         System.out.println("************ TEST: REMOVE BY ID ***********");
