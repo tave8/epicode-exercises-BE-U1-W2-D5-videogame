@@ -101,7 +101,7 @@ public class Collezione<T extends CollezioneItem> {
      * Find items whose price == input price.
      * EQUAL
      */
-    public List<T> findWherePriceEQ(long targetPrice) {
+    public List<T> findWherePriceEQ(double targetPrice) {
         return this.filterBy(item -> item.getPrice() == targetPrice);
     }
 
@@ -109,7 +109,7 @@ public class Collezione<T extends CollezioneItem> {
      * Find items whose price < input price.
      * LESS THAN
      */
-    public List<T> findWherePriceLT(long targetPrice) {
+    public List<T> findWherePriceLT(double targetPrice) {
         return this.filterBy(item -> item.getPrice() < targetPrice);
     }
 
@@ -117,7 +117,7 @@ public class Collezione<T extends CollezioneItem> {
      * Find items whose price <= input price.
      * LESS THAN OR EQUAL
      */
-    public List<T> findWherePriceLTE(long targetPrice) {
+    public List<T> findWherePriceLTE(double targetPrice) {
         return this.filterBy(item -> item.getPrice() <= targetPrice);
     }
 
@@ -125,7 +125,7 @@ public class Collezione<T extends CollezioneItem> {
      * Find items whose price > input price.
      * GREATER THAN
      */
-    public List<T> findWherePriceGT(long targetPrice) {
+    public List<T> findWherePriceGT(double targetPrice) {
         return this.filterBy(item -> item.getPrice() > targetPrice);
     }
 
@@ -133,7 +133,7 @@ public class Collezione<T extends CollezioneItem> {
      * Find items whose price >= input price.
      * GREATER THAN OR EQUAL
      */
-    public List<T> findWherePriceGTE(long targetPrice) {
+    public List<T> findWherePriceGTE(double targetPrice) {
         return this.filterBy(item -> item.getPrice() >= targetPrice);
     }
 
