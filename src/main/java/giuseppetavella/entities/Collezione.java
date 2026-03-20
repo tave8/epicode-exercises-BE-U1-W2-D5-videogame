@@ -145,7 +145,7 @@ public class Collezione<T extends CollezioneItem> {
      * Assumption: types that have "numero giocatori" are:
      *      GiocoDaTavolo
      */
-    public List<T> findWhereNumeroGiocatoriEQ(double targetNumeroGiocatori) {
+    public List<T> findWhereNumeroGiocatoriEQ(long targetNumeroGiocatori) {
         // get the collection items of type GiocoDaTavolo
         // filter by numero giocatori
         return this.filterBy(item -> {

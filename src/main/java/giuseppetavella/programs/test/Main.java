@@ -29,7 +29,7 @@ public class Main {
 
         // giochi da tavolo
         GiocoDaTavolo giocoDaTavolo1 = new GiocoDaTavolo(4, "scarabeo", 40, 1400, 2, 45);
-        GiocoDaTavolo giocoDaTavolo2 = new GiocoDaTavolo(5, "risiko", 50, 1400, 2, 2);
+        GiocoDaTavolo giocoDaTavolo2 = new GiocoDaTavolo(5, "risiko", 50, 1400, 3, 2);
         
         // ***** ADD *****
         
@@ -57,14 +57,37 @@ public class Main {
         // runTestFindByNumeroGiocatori(tutteCollezioni);
         
         // runTestFindWithPriceLTE(tutteCollezioni);
-        
-        
+
+        // runTestFindWhereNumeroGiocatoriEQ(tutteCollezioni);
         
         // ***** PRINT STATS ****
         
         // giochi1.printStats();
         // giochi2.printStats();
         
+    }
+    
+    public static void runTestFindWhereNumeroGiocatoriEQ(List<Collezione<Gioco>> tutteCollezioni) {
+        System.out.println();
+        System.out.println("************ TEST: FIND BY NUMERO GIOCATORI ***********");
+
+        List<Integer> targetNumeroGiocatoriList = new ArrayList<>(List.of(
+                0, 1, 2, 3, 5, 7, 10
+        ));
+        // for each collezione
+        for(Collezione<?> currCollezione : tutteCollezioni) {
+            System.out.println("  COLLECTION: " + currCollezione.getName());
+            // for each target numero giocatori
+            for (Integer targetNumeroGiocatori : targetNumeroGiocatoriList) {
+                System.out.println("    TARGET NUMERO GIOCATORI: " + targetNumeroGiocatori);
+                List<?> outList = currCollezione.findWhereNumeroGiocatoriEQ(targetNumeroGiocatori);
+                if(outList.isEmpty()) {
+                    System.out.println("      "+"no item found where target numero giocatori "+targetNumeroGiocatori);
+                } else {
+                    outList.forEach(item -> System.out.println("      "+item) );
+                }
+            }
+        }
     }
     
     public static void runTestFindWithPriceLTE(List<Collezione<Gioco>> tutteCollezioni) {
