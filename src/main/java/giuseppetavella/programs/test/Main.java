@@ -52,20 +52,20 @@ public class Main {
         ));
         
 
-        // runTestUpdateById(tutteCollezioni);
+        runTestUpdateById(tutteCollezioni);
 
-        // runTestFindById(tutteCollezioni);
+        runTestFindById(tutteCollezioni);
 
-        // runTestFindWithPriceLTE(tutteCollezioni);
+        runTestFindWithPriceLTE(tutteCollezioni);
 
         runTestFindWhereNumeroGiocatoriEQ(tutteCollezioni);
         
         // ***** PRINT STATS ****
         
-        // giochi1.printStats();
-        // giochi2.printStats();
+        giochi1.printStats();
+        giochi2.printStats();
 
-        // runTestRemoveById(tutteCollezioni);
+        runTestRemoveById(tutteCollezioni);
         
     }
     
