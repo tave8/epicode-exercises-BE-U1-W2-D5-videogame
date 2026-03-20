@@ -7,6 +7,8 @@ import giuseppetavella.interfaces.CollezioneItem;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -66,10 +68,45 @@ public class Collezione<T extends CollezioneItem> {
         // continue here     
     }
     
-    // public List<T> findWherePriceLessThan(long maxTargetPrice) {
-    //    
-    // }
-    
+    public List<T> filterBy(Predicate<T> filterPredicate) {
+        return this.getItems().stream()
+                .filter(filterPredicate)
+                .toList();
+    }
+
+    /**
+     * Find items whose price < input price.
+     * LESS THAN
+     */
+    public List<T> findWherePriceLT(long maxTargetPrice) {
+        return this.filterBy(item -> item.getPrice() < maxTargetPrice);
+    }
+
+    /**
+     * Find items whose price <= input price.
+     * LESS THAN OR EQUAL
+     */
+    public List<T> findWherePriceLTE(long maxTargetPrice) {
+        return this.filterBy(item -> item.getPrice() <= maxTargetPrice);
+    }
+
+    /**
+     * Find items whose price <= input price.
+     * GREATER THAN
+     */
+    public List<T> findWherePriceGT(long maxTargetPrice) {
+        return this.filterBy(item -> item.getPrice() > maxTargetPrice);
+    }
+
+    /**
+     * Find items whose price <= input price.
+     * GREATER THAN OR EQUAL
+     */
+    public List<T> findWherePriceGTE(long maxTargetPrice) {
+        return this.filterBy(item -> item.getPrice() >= maxTargetPrice);
+    }
+
+
     //
     // public List<T> findWhereNumeroGiocatoriEquals(double targetNumeroGiocatori) {
     //    

@@ -24,6 +24,11 @@ public abstract class Gioco implements CollezioneItem {
     public long getId() {
         return this.getIdGioco();
     }
+    
+    @Override
+    public double getPrice() {
+        return this.getPrezzo();
+    }
 
     public long getIdGioco() {
         return idGioco;
