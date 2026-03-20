@@ -131,6 +131,17 @@ public class Main {
                 System.out.println("invalid numero giocatori. try again.");
             }
         }
+
+
+        System.out.println();
+        System.out.println("**** VUOI LE STATS DELLA COLLEZIONE? *****");
+        System.out.println("    s = si; n = no");
+
+        String userSymbol = scanner.nextLine();
+        
+        if(userSymbol.trim().equals("s")) {
+            collezioneSceltaDaUtente.printStats();    
+        }
         
         
     }
