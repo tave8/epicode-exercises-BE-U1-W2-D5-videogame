@@ -78,24 +78,35 @@ public class Main {
                 System.out.println("invalid collection. try again.");
             }
         }
+        
+        Collezione<Gioco> collezioneSceltaDaUtente = tutteCollezioni.get(numeroCollezioneUser-1);
 
-        System.out.println(numeroCollezioneUser);
+        System.out.println(collezioneSceltaDaUtente);
         
-        // System.out.println();
-        // System.out.println("**** RICERCA PER PREZZO *****");
-        //
-        // double prezzoTargetUser;
-        //        
-        // while(true) {
-        //     try {
-        //         prezzoTargetUser = Double.parseDouble(scanner.nextLine());
-        //     }
-        //     catch(IllegalArgumentException ex) {
-        //         System.out.println("invalid price. try again.");
-        //     }
-        // }
-        
-        
-        
+        System.out.println();
+        System.out.println("**** RICERCA ITEM CON PREZZO MINORE O UGUALE DI *****");
+
+        double prezzoTargetUser;
+
+        while(true) {
+            try {
+                prezzoTargetUser = Double.parseDouble(scanner.nextLine());
+                if(prezzoTargetUser <= 0) {
+                    throw new IllegalArgumentException();
+                }
+                List<Gioco> outList = collezioneSceltaDaUtente.findWherePriceLTE(prezzoTargetUser);
+                if(outList.isEmpty()) {
+                    System.out.println("      "+"no item found where target price "+prezzoTargetUser);
+                } else {
+                    outList.forEach(item -> System.out.println("      "+item) );
+                }
+                break;
+            }
+            catch(IllegalArgumentException ex) {
+                System.out.println("invalid price. try again.");
+            }
+        }
     }
+    
+    
 }
