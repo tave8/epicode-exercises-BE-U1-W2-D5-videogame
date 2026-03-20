@@ -52,21 +52,20 @@ public class Main {
         ));
         
 
-        runTestUpdateById(tutteCollezioni);
+        // runTestUpdateById(tutteCollezioni);
 
-        runTestFindById(tutteCollezioni);
+        // runTestFindById(tutteCollezioni);
 
-        runTestFindWithPriceLTE(tutteCollezioni);
+        // runTestFindWithPriceLTE(tutteCollezioni);
 
         runTestFindWhereNumeroGiocatoriEQ(tutteCollezioni);
         
-        
         // ***** PRINT STATS ****
         
-        giochi1.printStats();
-        giochi2.printStats();
+        // giochi1.printStats();
+        // giochi2.printStats();
 
-        runTestRemoveById(tutteCollezioni);
+        // runTestRemoveById(tutteCollezioni);
         
     }
     
@@ -176,7 +175,7 @@ public class Main {
         System.out.println("************ TEST: FIND BY ID ***********");
 
         List<Integer> targetItemIds = new ArrayList<>(List.of(
-                1,2,3,4,5,6,7,8
+                1,2,3,4,5,6,7,8, 10, 11
         ));
         // for each collezione
         for(Collezione<?> currCollezione : tutteCollezioni) {

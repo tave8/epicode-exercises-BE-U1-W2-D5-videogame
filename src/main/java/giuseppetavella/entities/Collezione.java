@@ -4,6 +4,7 @@ import giuseppetavella.enums.CollezioneItemType;
 import giuseppetavella.exceptions.CollezioneItemIdIsNotFoundException;
 import giuseppetavella.exceptions.CollezioneItemIdIsNotUniqueException;
 import giuseppetavella.interfaces.CollezioneItem;
+import giuseppetavella.interfaces.HaNumeroGiocatori;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -150,12 +151,12 @@ public class Collezione<T extends CollezioneItem> {
         // filter by numero giocatori
         return this.filterBy(item -> {
             // filter out collection items that are not GiocoDaTavolo
-            if(!(item instanceof GiocoDaTavolo)) {
+            if(!(item instanceof HaNumeroGiocatori)) {
                 return false;
             }
-            GiocoDaTavolo giocoDaTavolo = (GiocoDaTavolo) item;
+            HaNumeroGiocatori giocoConNumeriGiocatori = (HaNumeroGiocatori) item;
             // filter in giochi da tavolo that have the same numero giocatori
-            return giocoDaTavolo.getNumeroGiocatori() == targetNumeroGiocatori;
+            return giocoConNumeriGiocatori.getNumeroGiocatori() == targetNumeroGiocatori;
         });
     }
 
