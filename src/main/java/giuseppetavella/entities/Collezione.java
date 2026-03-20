@@ -66,6 +66,15 @@ public class Collezione<T extends CollezioneItem> {
         }
         // continue here     
     }
+    
+    public double calcAverageItemPrice() {
+        return this.getItems().stream()
+                .collect(
+                        Collectors.averagingDouble(
+                                CollezioneItem::getPrice
+                        )
+                );
+    }
 
     /**
      * Filter collection items by custom predicate.
@@ -138,6 +147,7 @@ public class Collezione<T extends CollezioneItem> {
         });
     }
 
+    
 
     /**
      * Print collection items stats.
@@ -151,7 +161,7 @@ public class Collezione<T extends CollezioneItem> {
         Optional<T> mostExpensiveItem = this.getMostExpensiveItem();
         
         // **** STAT: media dei prezzi di tutti gli elementi (collection items) 
-        
+        double averageItemPrice = this.calcAverageItemPrice();
         
         // PRINT     
         System.out.println();
@@ -172,9 +182,17 @@ public class Collezione<T extends CollezioneItem> {
         } else {
             System.out.println(mostExpensiveItem);
         }
+
+        System.out.println();
+        System.out.println("-----");
+        System.out.println("MEDIA DEI PREZZI DEGLI ITEM");
+        System.out.println("-----");
+        System.out.println(averageItemPrice);
         
 
     }
+    
+    // public 
 
     /**
      * STAT
