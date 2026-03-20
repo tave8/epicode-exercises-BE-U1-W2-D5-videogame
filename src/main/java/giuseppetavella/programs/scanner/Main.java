@@ -106,6 +106,33 @@ public class Main {
                 System.out.println("invalid price. try again.");
             }
         }
+
+
+        System.out.println();
+        System.out.println("**** RICERCA ITEM CON NUMERO GIOCATORI UGUALE A *****");
+
+        int numeroGiocatoriTargetUser;
+
+        while(true) {
+            try {
+                numeroGiocatoriTargetUser = Integer.parseInt(scanner.nextLine());
+                if(numeroGiocatoriTargetUser <= 0) {
+                    throw new IllegalArgumentException();
+                }
+                List<?> outList = collezioneSceltaDaUtente.findWhereNumeroGiocatoriEQ(numeroGiocatoriTargetUser);
+                if(outList.isEmpty()) {
+                    System.out.println("      "+"no item found where target numero giocatori "+numeroGiocatoriTargetUser);
+                } else {
+                    outList.forEach(item -> System.out.println("      "+item) );
+                }
+                break;
+            }
+            catch(IllegalArgumentException ex) {
+                System.out.println("invalid numero giocatori. try again.");
+            }
+        }
+        
+        
     }
     
     
