@@ -46,7 +46,7 @@ public class Collezione<T extends CollezioneItem> {
         }
     }
     
-    public T findById(long targetId) throws CollezioneItemIdIsNotFoundException {
+    public T findById(int targetId) throws CollezioneItemIdIsNotFoundException {
         // check: item with this id does not exist, throw error
         if(!this.existsItemWithId(targetId)) {
             throw new CollezioneItemIdIsNotFoundException("The item with id " + targetId + " does not exist.");
@@ -63,7 +63,7 @@ public class Collezione<T extends CollezioneItem> {
         return targetItem;
     }
     
-    public void removeById(long targetId) throws CollezioneItemIdIsNotFoundException {
+    public void removeById(int targetId) throws CollezioneItemIdIsNotFoundException {
         boolean wasRemoved = this.getItems().removeIf(item -> item.getId() == targetId);
         if(!wasRemoved) {
             throw new CollezioneItemIdIsNotFoundException("The item with id " + targetId + " does not exist. "
@@ -71,7 +71,7 @@ public class Collezione<T extends CollezioneItem> {
         }
     }
     
-    public void updateById(long targetId) throws CollezioneItemIdIsNotFoundException {
+    public void updateById(int targetId) throws CollezioneItemIdIsNotFoundException {
         // check: item with this id does not exist, throw error
         if(!this.existsItemWithId(targetId)) {
             throw new CollezioneItemIdIsNotFoundException("The item with id " + targetId + " does not exist.");
@@ -101,40 +101,40 @@ public class Collezione<T extends CollezioneItem> {
      * Find items whose price == input price.
      * EQUAL
      */
-    public List<T> findWherePriceEQ(long maxTargetPrice) {
-        return this.filterBy(item -> item.getPrice() == maxTargetPrice);
+    public List<T> findWherePriceEQ(long targetPrice) {
+        return this.filterBy(item -> item.getPrice() == targetPrice);
     }
 
     /**
      * Find items whose price < input price.
      * LESS THAN
      */
-    public List<T> findWherePriceLT(long maxTargetPrice) {
-        return this.filterBy(item -> item.getPrice() < maxTargetPrice);
+    public List<T> findWherePriceLT(long targetPrice) {
+        return this.filterBy(item -> item.getPrice() < targetPrice);
     }
 
     /**
      * Find items whose price <= input price.
      * LESS THAN OR EQUAL
      */
-    public List<T> findWherePriceLTE(long maxTargetPrice) {
-        return this.filterBy(item -> item.getPrice() <= maxTargetPrice);
+    public List<T> findWherePriceLTE(long targetPrice) {
+        return this.filterBy(item -> item.getPrice() <= targetPrice);
     }
 
     /**
      * Find items whose price > input price.
      * GREATER THAN
      */
-    public List<T> findWherePriceGT(long maxTargetPrice) {
-        return this.filterBy(item -> item.getPrice() > maxTargetPrice);
+    public List<T> findWherePriceGT(long targetPrice) {
+        return this.filterBy(item -> item.getPrice() > targetPrice);
     }
 
     /**
      * Find items whose price >= input price.
      * GREATER THAN OR EQUAL
      */
-    public List<T> findWherePriceGTE(long maxTargetPrice) {
-        return this.filterBy(item -> item.getPrice() >= maxTargetPrice);
+    public List<T> findWherePriceGTE(long targetPrice) {
+        return this.filterBy(item -> item.getPrice() >= targetPrice);
     }
 
 
@@ -265,7 +265,7 @@ public class Collezione<T extends CollezioneItem> {
         return name;
     }
 
-    public boolean existsItemWithId(long targetId) {
+    public boolean existsItemWithId(int targetId) {
         for(T item: this.getItems()) {
           if(item.getId() == targetId) {
               return true;

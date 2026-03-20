@@ -4,14 +4,14 @@ import giuseppetavella.enums.CollezioneItemType;
 import giuseppetavella.interfaces.CollezioneItem;
 
 public abstract class Gioco implements CollezioneItem {
-    private final long idGioco;
+    private final int idGioco;
     private final CollezioneItemType itemType;
     private String titolo;
     private final long annoPubblicazione;
     private double prezzo;
     
     
-    public Gioco(long idGioco, String titolo, CollezioneItemType itemType, double prezzo, long annoPubblicazione) {
+    public Gioco(int idGioco, String titolo, CollezioneItemType itemType, double prezzo, long annoPubblicazione) {
         this.idGioco = idGioco;
         this.itemType = itemType;
         this.setTitolo(titolo);
@@ -25,7 +25,7 @@ public abstract class Gioco implements CollezioneItem {
      * therefore, giocoA.getId() == giocoA.getIdGioco()
      */
     @Override
-    public long getId() {
+    public int getId() {
         return this.getIdGioco();
     }
     
@@ -39,7 +39,7 @@ public abstract class Gioco implements CollezioneItem {
         return this.itemType;
     }
 
-    public long getIdGioco() {
+    public int getIdGioco() {
         return idGioco;
     }
 

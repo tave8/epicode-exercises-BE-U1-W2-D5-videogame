@@ -7,7 +7,7 @@ public class GiocoDaTavolo extends Gioco {
     private long numeroGiocatori;
     private long durataMediaPartita;
     
-    public GiocoDaTavolo(long idGioco, String titolo, double prezzo, long annoPubblicazione, long numeroGiocatori, long durataMediaPartita) {
+    public GiocoDaTavolo(int idGioco, String titolo, double prezzo, long annoPubblicazione, long numeroGiocatori, long durataMediaPartita) {
         super(idGioco, titolo, CollezioneItemType.GIOCO_DA_TAVOLO, prezzo, annoPubblicazione);
         this.setNumeroGiocatori(numeroGiocatori);
         this.setDurataMediaPartita(durataMediaPartita);

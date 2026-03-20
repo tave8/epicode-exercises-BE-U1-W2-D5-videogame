@@ -3,7 +3,7 @@ package giuseppetavella.interfaces;
 import giuseppetavella.enums.CollezioneItemType;
 
 public interface CollezioneItem {
-    long getId();
+    int getId();
     double getPrice();
     CollezioneItemType getCollezioneItemType();
 }
