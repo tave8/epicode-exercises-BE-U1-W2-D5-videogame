@@ -148,6 +148,7 @@ public class Collezione<T extends CollezioneItem> {
         Map<CollezioneItemType, Long> countByCollezioneItemType = this.getCountByCollezioneItemType();
         
         // **** STAT: gioco con il prezzo più alto
+        Optional<T> mostExpensiveItem = this.getMostExpensiveItem();
         
         // **** STAT: media dei prezzi di tutti gli elementi (collection items) 
         
@@ -155,15 +156,51 @@ public class Collezione<T extends CollezioneItem> {
         // PRINT     
         System.out.println();
         System.out.println("-----");
-        System.out.println("COUNT PER CATEGORIA DI COLLEZIONE ITEM");
+        System.out.println("COUNT PER CATEGORIA DI ITEM");
         System.out.println("-----");
         countByCollezioneItemType.forEach((collezioneItemType, howMany) -> {
             String msg = collezioneItemType + ": " + howMany;
             System.out.println(msg);
         });
+
+        System.out.println();
+        System.out.println("-----");
+        System.out.println("ITEM CON PREZZO PIU' ALTO");
+        System.out.println("-----");
+        if(mostExpensiveItem.isEmpty()) {
+            System.out.println("INFO: no item has been found");
+        } else {
+            System.out.println(mostExpensiveItem);
+        }
         
+
     }
 
+    /**
+     * STAT
+     */
+    public Optional<T> getMostExpensiveItem() {
+        // sort collection items by price
+        // reverse 
+        // get first item
+        
+        // if there are no items
+        if(this.getItems().isEmpty()) {
+            return Optional.empty();
+        }
+        
+        // if there are items
+        return Optional.ofNullable(
+                this.getItems().stream()
+                .sorted(
+                        Comparator.comparing(CollezioneItem::getPrice).reversed()
+                )
+                .limit(1)
+                .toList()
+                .getFirst()
+        );
+    }
+    
     /**
      * STAT 
      */
