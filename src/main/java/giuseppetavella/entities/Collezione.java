@@ -20,9 +20,15 @@ public class Collezione<T extends CollezioneItem> {
     
     // collection items
     private final List<T> items = new ArrayList<>();
+    // nome collezione
+    private final String name;
+    
+    public Collezione(String name) {
+        this.name = name;
+    }
     
     public Collezione() {
-        
+        this("Collection #" + Collezione.generateRandom());
     }
     
     public void add(T newItem) throws CollezioneItemIdIsNotUniqueException {
@@ -32,6 +38,12 @@ public class Collezione<T extends CollezioneItem> {
         }
         // all checks are passed; you can safely add
         this.getItems().add(newItem);
+    }
+    
+    public void addMany(List<T> newItems) throws CollezioneItemIdIsNotUniqueException {
+        for(T newItem : newItems) {
+            this.add(newItem);
+        }
     }
     
     public T findById(long targetId) throws CollezioneItemIdIsNotFoundException {
@@ -153,6 +165,11 @@ public class Collezione<T extends CollezioneItem> {
      * Print collection items stats.
      */
     public void printStats() {
+        System.out.println();
+        System.out.println("**************");
+        System.out.println("STATS OF COLLECTION: " + this.getName());
+        System.out.println("**************");
+        
         // **** STAT: numero totale videgiochi & giochi da tavolo
         // group by collezione item type
         Map<CollezioneItemType, Long> countByCollezioneItemType = this.getCountByCollezioneItemType();
@@ -165,29 +182,29 @@ public class Collezione<T extends CollezioneItem> {
         
         // PRINT     
         System.out.println();
-        System.out.println("-----");
-        System.out.println("COUNT PER CATEGORIA DI ITEM");
-        System.out.println("-----");
+        System.out.println("  -----");
+        System.out.println("  STAT: COUNT PER CATEGORIA DI ITEM");
+        System.out.println("  -----");
         countByCollezioneItemType.forEach((collezioneItemType, howMany) -> {
-            String msg = collezioneItemType + ": " + howMany;
+            String msg = "     "+collezioneItemType + ": " + howMany;
             System.out.println(msg);
         });
 
         System.out.println();
-        System.out.println("-----");
-        System.out.println("ITEM CON PREZZO PIU' ALTO");
-        System.out.println("-----");
+        System.out.println("  -----");
+        System.out.println("  STAT: ITEM CON PREZZO PIU' ALTO");
+        System.out.println("  -----");
         if(mostExpensiveItem.isEmpty()) {
-            System.out.println("INFO: no item has been found");
+            System.out.println("     "+"INFO: no item has been found");
         } else {
-            System.out.println(mostExpensiveItem);
+            System.out.println("     "+mostExpensiveItem);
         }
 
         System.out.println();
-        System.out.println("-----");
-        System.out.println("MEDIA DEI PREZZI DEGLI ITEM");
-        System.out.println("-----");
-        System.out.println(averageItemPrice);
+        System.out.println("  -----");
+        System.out.println("  STAT: MEDIA DEI PREZZI DEGLI ITEM");
+        System.out.println("  -----");
+        System.out.println("     "+averageItemPrice);
         
 
     }
@@ -242,9 +259,12 @@ public class Collezione<T extends CollezioneItem> {
         }
         
         return outputMap;
-    } 
-            
-    
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public boolean existsItemWithId(long targetId) {
         for(T item: this.getItems()) {
           if(item.getId() == targetId) {
@@ -258,10 +278,19 @@ public class Collezione<T extends CollezioneItem> {
         return items;
     }
 
+    /**
+     * returns a pseudo-random numer
+     */
+    public static int generateRandom() {
+        Random random = new Random();
+        return random.nextInt(1, 1000000);
+    }
+
     @Override
     public String toString() {
         return "Collezione{" +
-                "items=" + items +
+                "name='" + name + '\'' +
+                ", items=" + items +
                 '}';
     }
 }
