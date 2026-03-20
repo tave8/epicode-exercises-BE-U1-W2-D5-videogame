@@ -4,7 +4,6 @@ import giuseppetavella.enums.CollezioneItemType;
 import giuseppetavella.exceptions.CollezioneItemIdIsNotFoundException;
 import giuseppetavella.exceptions.CollezioneItemIdIsNotUniqueException;
 import giuseppetavella.interfaces.CollezioneItem;
-import giuseppetavella.interfaces.HaNumeroGiocatori;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -137,29 +136,6 @@ public class Collezione<T extends CollezioneItem> {
     public List<T> findWherePriceGTE(double targetPrice) {
         return this.filterBy(item -> item.getPrice() >= targetPrice);
     }
-
-
-    /**
-     * Find items where numero giocatori == input numero giocatori.
-     * EQUAL
-     * 
-     * Assumption: types that have "numero giocatori" are:
-     *      GiocoDaTavolo
-     */
-    public List<T> findWhereNumeroGiocatoriEQ(long targetNumeroGiocatori) {
-        // get the collection items of type GiocoDaTavolo
-        // filter by numero giocatori
-        return this.filterBy(item -> {
-            // filter out collection items that are not GiocoDaTavolo
-            if(!(item instanceof HaNumeroGiocatori)) {
-                return false;
-            }
-            HaNumeroGiocatori giocoConNumeriGiocatori = (HaNumeroGiocatori) item;
-            // filter in giochi da tavolo that have the same numero giocatori
-            return giocoConNumeriGiocatori.getNumeroGiocatori() == targetNumeroGiocatori;
-        });
-    }
-
     
 
     /**
@@ -171,11 +147,11 @@ public class Collezione<T extends CollezioneItem> {
         System.out.println("STATS OF COLLECTION: " + this.getName());
         System.out.println("**************");
         
-        // **** STAT: numero totale videgiochi & giochi da tavolo
+        // **** STAT: per ogni categoria di collezione item type, conta quanti sono
         // group by collezione item type
         Map<CollezioneItemType, Long> countByCollezioneItemType = this.getCountByCollezioneItemType();
         
-        // **** STAT: gioco con il prezzo più alto
+        // **** STAT: item con il prezzo più alto
         Optional<T> mostExpensiveItem = this.getMostExpensiveItem();
         
         // **** STAT: media dei prezzi di tutti gli elementi (collection items) 

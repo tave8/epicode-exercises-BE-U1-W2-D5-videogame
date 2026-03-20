@@ -1,9 +1,6 @@
 package giuseppetavella.programs.test;
 
-import giuseppetavella.entities.Collezione;
-import giuseppetavella.entities.Gioco;
-import giuseppetavella.entities.GiocoDaTavolo;
-import giuseppetavella.entities.Videogioco;
+import giuseppetavella.entities.*;
 import giuseppetavella.enums.GenereVideogioco;
 import giuseppetavella.enums.PiattaformaVideogioco;
 import giuseppetavella.exceptions.CollezioneItemIdIsNotFoundException;
@@ -14,11 +11,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         // collezioni giochi
-        Collezione<Gioco> giochi1 = new Collezione<>("giochi1");
-        Collezione<Gioco> giochi2 = new Collezione<>("giochi2");
+        CollezioneGiochi giochi1 = new CollezioneGiochi("giochi1");
+        CollezioneGiochi giochi2 = new CollezioneGiochi("giochi2");
         
         // tutte collezioni
-        List<Collezione<Gioco>> tutteCollezioni = List.of(
+        List<CollezioneGiochi> tutteCollezioni = List.of(
                 giochi1, giochi2
         );
 
@@ -69,7 +66,7 @@ public class Main {
         
     }
     
-    public static void runTestUpdateById(List<Collezione<Gioco>> tutteCollezioni) {
+    public static void runTestUpdateById(List<CollezioneGiochi> tutteCollezioni) {
         System.out.println();
         System.out.println("************ TEST: UPDATE BY ID ***********");
 
@@ -77,7 +74,7 @@ public class Main {
                 1,2,3,4,5,6,7,8
         ));
         // for each collezione
-        for(Collezione<?> currCollezione : tutteCollezioni) {
+        for(CollezioneGiochi currCollezione : tutteCollezioni) {
             System.out.println("  COLLECTION: " + currCollezione.getName());
             // for each target item id 
             for (Integer targetItemId : targetItemIds) {
@@ -97,7 +94,7 @@ public class Main {
         }
     }
     
-    public static void runTestRemoveById(List<Collezione<Gioco>> tutteCollezioni) {
+    public static void runTestRemoveById(List<CollezioneGiochi> tutteCollezioni) {
         System.out.println();
         System.out.println("************ TEST: REMOVE BY ID ***********");
 
@@ -105,7 +102,7 @@ public class Main {
                 1,2,3,4,5,6,7,8
         ));
         // for each collezione
-        for(Collezione<?> currCollezione : tutteCollezioni) {
+        for(CollezioneGiochi currCollezione : tutteCollezioni) {
             System.out.println("  COLLECTION: " + currCollezione.getName());
             // for each target item id 
             for (Integer targetItemId : targetItemIds) {
@@ -124,7 +121,7 @@ public class Main {
         }
     }
     
-    public static void runTestFindWhereNumeroGiocatoriEQ(List<Collezione<Gioco>> tutteCollezioni) {
+    public static void runTestFindWhereNumeroGiocatoriEQ(List<CollezioneGiochi> tutteCollezioni) {
         System.out.println();
         System.out.println("************ TEST: FIND BY NUMERO GIOCATORI ***********");
 
@@ -132,7 +129,7 @@ public class Main {
                 0, 1, 2, 3, 5, 7, 10
         ));
         // for each collezione
-        for(Collezione<?> currCollezione : tutteCollezioni) {
+        for(CollezioneGiochi currCollezione : tutteCollezioni) {
             System.out.println("  COLLECTION: " + currCollezione.getName());
             // for each target numero giocatori
             for (Integer targetNumeroGiocatori : targetNumeroGiocatoriList) {
@@ -147,7 +144,7 @@ public class Main {
         }
     }
     
-    public static void runTestFindWithPriceLTE(List<Collezione<Gioco>> tutteCollezioni) {
+    public static void runTestFindWithPriceLTE(List<CollezioneGiochi> tutteCollezioni) {
         System.out.println();
         System.out.println("************ TEST: FIND WITH PRICE LESS THAN OR EQUAL ***********");
 
@@ -155,7 +152,7 @@ public class Main {
                 5.0, 10.0, 20.0, 50.0, 100.0, 200.0
         ));
         // for each collezione
-        for(Collezione<?> currCollezione : tutteCollezioni) {
+        for(CollezioneGiochi currCollezione : tutteCollezioni) {
             System.out.println("  COLLECTION: " + currCollezione.getName());
             // for each target price
             for (Double targetPrice : targetPrices) {
@@ -170,7 +167,7 @@ public class Main {
         }
     }
     
-    public static void runTestFindById(List<Collezione<Gioco>> tutteCollezioni) {
+    public static void runTestFindById(List<CollezioneGiochi> tutteCollezioni) {
         System.out.println();
         System.out.println("************ TEST: FIND BY ID ***********");
 
@@ -178,7 +175,7 @@ public class Main {
                 1,2,3,4,5,6,7,8, 10, 11
         ));
         // for each collezione
-        for(Collezione<?> currCollezione : tutteCollezioni) {
+        for(CollezioneGiochi currCollezione : tutteCollezioni) {
             System.out.println("  COLLECTION: " + currCollezione.getName());
             // for each target item id 
             for (Integer targetItemId : targetItemIds) {

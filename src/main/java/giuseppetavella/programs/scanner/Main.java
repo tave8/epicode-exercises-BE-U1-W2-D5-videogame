@@ -1,9 +1,6 @@
 package giuseppetavella.programs.scanner;
 
-import giuseppetavella.entities.Collezione;
-import giuseppetavella.entities.Gioco;
-import giuseppetavella.entities.GiocoDaTavolo;
-import giuseppetavella.entities.Videogioco;
+import giuseppetavella.entities.*;
 import giuseppetavella.enums.GenereVideogioco;
 import giuseppetavella.enums.PiattaformaVideogioco;
 
@@ -13,11 +10,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // collezioni giochi
-        Collezione<Gioco> giochi1 = new Collezione<>("giochi1");
-        Collezione<Gioco> giochi2 = new Collezione<>("giochi2");
+        CollezioneGiochi giochi1 = new CollezioneGiochi("giochi1");
+        CollezioneGiochi giochi2 = new CollezioneGiochi("giochi2");
 
         // tutte collezioni
-        List<Collezione<Gioco>> tutteCollezioni = List.of(
+        List<CollezioneGiochi> tutteCollezioni = List.of(
                 giochi1, giochi2
         );
 
@@ -79,7 +76,7 @@ public class Main {
             }
         }
         
-        Collezione<Gioco> collezioneSceltaDaUtente = tutteCollezioni.get(numeroCollezioneUser-1);
+        CollezioneGiochi collezioneSceltaDaUtente = tutteCollezioni.get(numeroCollezioneUser-1);
 
         System.out.println(collezioneSceltaDaUtente);
         
@@ -119,7 +116,7 @@ public class Main {
                 if(numeroGiocatoriTargetUser <= 0) {
                     throw new IllegalArgumentException();
                 }
-                List<?> outList = collezioneSceltaDaUtente.findWhereNumeroGiocatoriEQ(numeroGiocatoriTargetUser);
+                List<Gioco> outList = collezioneSceltaDaUtente.findWhereNumeroGiocatoriEQ(numeroGiocatoriTargetUser);
                 if(outList.isEmpty()) {
                     System.out.println("      "+"no item found where target numero giocatori "+numeroGiocatoriTargetUser);
                 } else {

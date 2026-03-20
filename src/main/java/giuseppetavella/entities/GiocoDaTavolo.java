@@ -2,9 +2,9 @@ package giuseppetavella.entities;
 
 import giuseppetavella.enums.CollezioneItemType;
 import giuseppetavella.exceptions.NumeroGiocatoriOutOfRangeException;
-import giuseppetavella.interfaces.HaNumeroGiocatori;
+import giuseppetavella.interfaces.GiocoConNumeroGiocatori;
 
-public class GiocoDaTavolo extends Gioco implements HaNumeroGiocatori {
+public class GiocoDaTavolo extends Gioco implements GiocoConNumeroGiocatori {
     private long numeroGiocatori;
     private long durataMediaPartita;
     

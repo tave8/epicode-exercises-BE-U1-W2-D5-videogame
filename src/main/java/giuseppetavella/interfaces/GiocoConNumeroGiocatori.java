@@ -1,5 +1,5 @@
 package giuseppetavella.interfaces;
 
-public interface HaNumeroGiocatori {
+public interface GiocoConNumeroGiocatori {
     long getNumeroGiocatori();
 }
