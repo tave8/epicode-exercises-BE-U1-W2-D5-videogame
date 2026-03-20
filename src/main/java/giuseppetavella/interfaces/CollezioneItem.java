@@ -1,5 +1,5 @@
 package giuseppetavella.interfaces;
 
-public interface CollectionItem {
+public interface CollezioneItem {
     long getId();
 }

@@ -1,8 +1,8 @@
 package giuseppetavella.entities;
 
-import giuseppetavella.interfaces.CollectionItem;
+import giuseppetavella.interfaces.CollezioneItem;
 
-public abstract class Gioco implements CollectionItem {
+public abstract class Gioco implements CollezioneItem {
     private final long idGioco;
     private String titolo;
     private final long annoPubblicazione;
