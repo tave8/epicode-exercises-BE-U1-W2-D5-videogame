@@ -5,8 +5,10 @@ import giuseppetavella.entities.Gioco;
 
 public class Main {
     public static void main(String[] args) {
-        Collezione<Gioco> giochi = new Collezione<>();
-
-        System.out.println(giochi);
+        Collezione<Gioco> giochi1 = new Collezione<>();
+        
+        giochi1.findWhereNumeroGiocatoriEQ(2);
+        
+        System.out.println(giochi1);
     }
 }

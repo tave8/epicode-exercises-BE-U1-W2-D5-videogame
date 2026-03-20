@@ -67,11 +67,22 @@ public class Collezione<T extends CollezioneItem> {
         }
         // continue here     
     }
-    
+
+    /**
+     * Filter collection items by custom predicate.
+     */
     public List<T> filterBy(Predicate<T> filterPredicate) {
         return this.getItems().stream()
                 .filter(filterPredicate)
                 .toList();
+    }
+
+    /**
+     * Find items whose price == input price.
+     * EQUAL
+     */
+    public List<T> findWherePriceEQ(long maxTargetPrice) {
+        return this.filterBy(item -> item.getPrice() == maxTargetPrice);
     }
 
     /**
@@ -91,7 +102,7 @@ public class Collezione<T extends CollezioneItem> {
     }
 
     /**
-     * Find items whose price <= input price.
+     * Find items whose price > input price.
      * GREATER THAN
      */
     public List<T> findWherePriceGT(long maxTargetPrice) {
@@ -99,7 +110,7 @@ public class Collezione<T extends CollezioneItem> {
     }
 
     /**
-     * Find items whose price <= input price.
+     * Find items whose price >= input price.
      * GREATER THAN OR EQUAL
      */
     public List<T> findWherePriceGTE(long maxTargetPrice) {
@@ -107,10 +118,26 @@ public class Collezione<T extends CollezioneItem> {
     }
 
 
-    //
-    // public List<T> findWhereNumeroGiocatoriEquals(double targetNumeroGiocatori) {
-    //    
-    // }
+    /**
+     * Find items where numero giocatori == input numero giocatori.
+     * EQUAL
+     * 
+     * Assumption: types that have "numero giocatori" are:
+     *      GiocoDaTavolo
+     */
+    public List<T> findWhereNumeroGiocatoriEQ(double targetNumeroGiocatori) {
+        // get the collection items of type GiocoDaTavolo
+        // filter by numero giocatori
+        return this.filterBy(item -> {
+            // filter out collection items that are not GiocoDaTavolo
+            if(!(item instanceof GiocoDaTavolo)) {
+                return false;
+            }
+            GiocoDaTavolo giocoDaTavolo = (GiocoDaTavolo) item;
+            // filter in giochi da tavolo that have the same numero giocatori
+            return giocoDaTavolo.getNumeroGiocatori() == targetNumeroGiocatori;
+        });
+    }
     
     public void printStats() {
         
